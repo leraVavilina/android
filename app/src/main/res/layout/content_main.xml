@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DAFAFF"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <fragment
-        android:id="@+id/nav_host_fragment_content_main"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="303dp"
+        android:layout_height="60dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Приложение по поиску из глоссария"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/jd"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="406dp" />
+
+    <EditText
+        android:id="@+id/nameUser"
+        android:layout_width="278dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Имя"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="279dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
