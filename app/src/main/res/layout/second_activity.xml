@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DAFAFF"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <TextView
+        android:id="@+id/userNameText2"
+        android:layout_width="191dp"
+        android:layout_height="52dp"
+        android:layout_x="208dp"
+        android:layout_y="11dp"
+        android:text="Имя пользователя:"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/searchText2"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:layout_x="21dp"
+        android:layout_y="172dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/searchButton2"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_x="291dp"
+        android:layout_y="168dp"
+        android:backgroundTint="#7E8FE5"
+        android:text="Поиск"
+        android:textColor="#E9F554"
+        android:textSize="10sp" />
+</AbsoluteLayout>

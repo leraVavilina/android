@@ -1,34 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#DAFAFF"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.Lab1.AppBarOverlay">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="303dp"
+        android:layout_height="132dp"
+        android:layout_x="51dp"
+        android:layout_y="39dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Приложение по поиску из глоссария"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="27dp" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Lab1.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_main" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <ImageButton
+        android:id="@+id/imageButtonContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_x="68dp"
+        android:layout_y="411dp"
+        android:onClick="clickContinue"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/jd"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="406dp" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <EditText
+        android:id="@+id/nameUser"
+        android:layout_width="278dp"
+        android:layout_height="43dp"
+        android:layout_x="75dp"
+        android:layout_y="266dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="279dp" />
+
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="75dp"
+        android:layout_y="242dp"
+        android:text="Имя" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="136dp"
+        android:layout_y="343dp"
+        android:backgroundTint="#7E8FE5"
+        android:onClick="acceptNameClick"
+        android:text="Подтвердить"
+        android:textColor="#E9F554" />
+
+    <CheckBox
+        android:id="@+id/isAnonCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="287dp"
+        android:layout_y="344dp"
+        android:checked="false"
+        android:text="Анонимно" />
+
+</AbsoluteLayout>

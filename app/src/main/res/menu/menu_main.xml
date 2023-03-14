@@ -3,8 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.lab1.MainActivity">
     <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="Поиск"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Настройки"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_userdata"
+        android:orderInCategory="100"
+        android:title="Данные о пользователе"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_draw"
+        android:orderInCategory="100"
+        android:title="Давайте порисуем"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="Вернуться назад"
         app:showAsAction="never" />
 </menu>
