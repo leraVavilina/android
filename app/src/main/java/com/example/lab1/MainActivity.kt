@@ -22,13 +22,17 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.lab1.databinding.ActivityMainBinding
+import java.io.File
 
+
+ var FILE_NАМЕ = "autorizationData.txt";
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private  var CHANNEL_ID = "channel"
+    private var _isAnon = false;
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +40,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
+
+        val content = File(filesDir, FILE_NАМЕ).readText()
+        if(content.contains("anon:false;")){
+            val intent = Intent(this@MainActivity, SecondActivity::class.java)
+            startActivity(intent)
+        }
 
         var context = getApplicationContext();
         var toastAnon = Toast.makeText(context,"Выбран анонимный профиль", Toast.LENGTH_LONG);
@@ -47,15 +57,16 @@ class MainActivity : AppCompatActivity() {
         isAnonCheck.setOnClickListener { view ->
             if (view is CheckBox) {
                 if (view.isChecked)   {
-
                     toastAnon.show();
                     toggleImageButton(true);
                     toggleUserName(false);
+                    this._isAnon = true;
                 }
                 else{
                     toastNotAnon.show();
                     toggleImageButton(false);
                     toggleUserName(true);
+                    this._isAnon = false;
                 }
                 var notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 notificationManager.cancel(1);
@@ -97,9 +108,18 @@ class MainActivity : AppCompatActivity() {
     }
 
         fun clickContinue(v:View){
-        val intent = Intent(this@MainActivity, SecondActivity::class.java)
-        startActivity(intent)
+            var editText = findViewById<EditText>(R.id.nameUser);
+            var data = "anon:"+this._isAnon.toString()+";";
+            if(_isAnon === false){
+                data += "name:"+editText.text+";";
+            }
+            File(filesDir, FILE_NАМЕ).writeText(data);
+
+            val intent = Intent(this@MainActivity, SecondActivity::class.java)
+            startActivity(intent)
     }
+
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun acceptNameClick(v:View){

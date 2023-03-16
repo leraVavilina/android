@@ -7,6 +7,13 @@
     android:background="#DAFAFF"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="213dp"
+        android:layout_height="39dp"
+        android:layout_x="110dp"
+        android:layout_y="286dp" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="303dp"
@@ -37,7 +44,7 @@
         android:layout_width="278dp"
         android:layout_height="43dp"
         android:layout_x="75dp"
-        android:layout_y="266dp"
+        android:layout_y="217dp"
         android:ems="10"
         android:inputType="textPersonName"
         tools:layout_editor_absoluteX="66dp"
@@ -48,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="75dp"
-        android:layout_y="242dp"
+        android:layout_y="193dp"
         android:text="Имя" />
 
     <Button

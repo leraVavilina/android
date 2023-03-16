@@ -18,23 +18,32 @@
         android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/searchText2"
+        android:id="@+id/searchText"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
         android:layout_x="21dp"
         android:layout_y="172dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:onClick="searctText"
         android:textAlignment="center" />
 
     <Button
         android:id="@+id/searchButton2"
         android:layout_width="98dp"
         android:layout_height="wrap_content"
-        android:layout_x="291dp"
-        android:layout_y="168dp"
+        android:layout_x="297dp"
+        android:layout_y="169dp"
         android:backgroundTint="#7E8FE5"
-        android:text="Поиск"
+        android:onClick="addSearchButton"
+        android:text="Добавить"
         android:textColor="#E9F554"
         android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="350dp"
+        android:layout_height="431dp"
+        android:layout_x="23dp"
+        android:layout_y="253dp" />
 </AbsoluteLayout>

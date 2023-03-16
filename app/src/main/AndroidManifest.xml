@@ -30,6 +30,9 @@
         <activity
             android:name=".DrawActivity">
         </activity>
+        <activity
+            android:name=".AddActivity">
+        </activity>
     </application>
 
 </manifest>

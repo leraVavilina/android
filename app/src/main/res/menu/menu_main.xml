@@ -27,4 +27,9 @@
         android:orderInCategory="100"
         android:title="Вернуться назад"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_exit_person_cabinet"
+        android:orderInCategory="100"
+        android:title="Выйти из ЛК"
+        app:showAsAction="never" />
 </menu>

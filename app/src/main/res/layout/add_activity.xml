@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DAFAFF"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_x="15dp"
+        android:layout_y="138dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/codeText"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="242dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/searchButton2"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:layout_x="116dp"
+        android:layout_y="319dp"
+        android:backgroundTint="#7E8FE5"
+        android:onClick="addSearchButton"
+        android:text="Добавить"
+        android:textColor="#E9F554"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/searchButton3"
+        android:layout_width="179dp"
+        android:layout_height="wrap_content"
+        android:layout_x="117dp"
+        android:layout_y="391dp"
+        android:backgroundTint="#7E8FE5"
+        android:onClick="prevButton"
+        android:text="Вернуться"
+        android:textColor="#E9F554"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="17dp"
+        android:layout_y="186dp"
+        android:text="Термин" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="17dp"
+        android:layout_y="290dp"
+        android:text="Код" />
+
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="339dp"
+        android:layout_height="225dp"
+        android:layout_x="35dp"
+        android:layout_y="457dp" />
+
+</AbsoluteLayout>
