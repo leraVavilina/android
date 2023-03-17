@@ -219,6 +219,10 @@ class SecondActivity : AppCompatActivity() {
         else if(item.equals(R.id.action_exit)){
             this.finish()
         }
+        else if(item.equals(R.id.action_web)){
+            val intent = Intent(this, WebActivity::class.java)
+            startActivity(intent)
+        }
         else if(item.equals(R.id.action_exit_person_cabinet)){
             File(filesDir, FILE_NАМЕ).writeText("anon:true;");
             val intent = Intent(this, MainActivity::class.java)

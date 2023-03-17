@@ -23,6 +23,11 @@
         android:title="Давайте порисуем"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_web"
+        android:orderInCategory="100"
+        android:title="Web"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_exit"
         android:orderInCategory="100"
         android:title="Вернуться назад"
