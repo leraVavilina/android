@@ -16,6 +16,8 @@ android:text="Hello"
 
 Результат внесенных в код изменений показан на рис. 4.15 .
 
+<image src="/imagesForReadme/image1.png" width="700px"  alt="Рисунок 4.15">
+  
 <p align="center">Рис. 4.15. Изменение размера и стиля шрифта</p>
 
 Теперь попробуем усложнить нашу задачу и изменить текст нашего виджета из
@@ -27,6 +29,8 @@ ch4\МainActivity.java. На рис. 4.16 показано его содержи
 Измените Jаvа-файл так, чтобы он выглядел, как показано в листинге 4.9. Строки,
 которые нужно добавить в ваш Jаvа-файл, выделены полужирным шрифтом.
 
+<image src="/imagesForReadme/image2.png" width="700px"  alt="Рисунок 4.16">
+  
 <p align="center">Рис. 4.16. Файл MainAclivity.java</p>
 
 > Листинг 4.9 Файл MainActivity.java
@@ -53,6 +57,8 @@ puЬlic class MainActivity extends AppCompatActivity {
 может быть изменено в процессе выполнения программы (*string* является неизменяемым типом - при изменении значения типа string nonpocry создается новый
 экземпляр *String*, содержащий новое значение).
 
+<image src="/imagesForReadme/image3.jpg" height="500px"  alt="Рисунок 4.17">
+  
 <p align="center">Рис. 4.17. Результат работы программы из листинга 4.9 </p>
 
 Кроме метода *getText()* вам может понадобиться метод *selectAll()*, выделяющий
@@ -134,6 +140,8 @@ txtl.setTypeface(null, Typeface.NORМAL);
 </LinearLayout>
 ```
 
+<image src="/imagesForReadme/image4.png" width="700px"  alt="Рисунок 4.18">
+  
 <p align="center"> Рис. 4.18. Разметка проекта с кнопкой</p>
 
 Обратите внимание на идентификаторы текстового поля и кнопки. Текстовое поле
