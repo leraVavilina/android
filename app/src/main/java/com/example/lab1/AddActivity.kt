@@ -1,5 +1,6 @@
 package com.example.lab1
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
@@ -18,12 +19,25 @@ class AddActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("Range", "Recycle")
     fun insertInDataBase(insertZapros: String, insertCode: String){
         var mydЬ = DataBase(this);
         var sqdЬ = mydЬ.writableDatabase;
 
+        var id = 0;
+
+        var query = "SELECT " + mydЬ.UID + ", " + mydЬ.ZAPROS+ ", "+
+                mydЬ.CODE+ " FROM " + mydЬ.ТАВLЕ_NАМЕ+" ;";
+
+        var otvet = sqdЬ.rawQuery(query, null);
+        while (otvet.moveToNext()) {
+            id = otvet.getInt(otvet.getColumnIndex(mydЬ.UID));
+        }
+        id++;
+
+
         var insertQuery = "INSERT INTO " +  mydЬ.ТАВLЕ_NАМЕ +
-                " (" + mydЬ.ZAPROS + ", "+mydЬ.CODE+") VALUES ('" +
+                " (" + mydЬ.UID +", " + mydЬ.ZAPROS + ", "+mydЬ.CODE+") VALUES ('"+id+"','" +
                 insertZapros+ "','"+insertCode+"')";
 
         sqdЬ.execSQL(insertQuery);

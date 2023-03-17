@@ -2,6 +2,7 @@ package com.example.lab1
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
@@ -19,6 +20,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import com.example.lab1.databinding.ActivityMainBinding
@@ -30,6 +32,7 @@ class SecondActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private  var nameUser ="";
     private  var isAnon = false;
+    private var sex = "";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,30 +40,55 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.second_activity)
 
-        val content = File(filesDir, FILE_NАМЕ).readText()
+        val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+       var res =  sharedPreference.getString("admin","")
 
-        var dataUser  = "Анонимно: ";
-        var index2 = 0;
-        var index = content.indexOf("anon:");
-        index+=5;
-        index2 = content.indexOf(";");
-        if(content.substring(index,index2).equals("false")){
-            dataUser+="Нет";
-            isAnon = false;
-        }
+if(res == "true"){
+
+    var button = findViewById<Button>(R.id.searchButton2);
+    button.visibility = View.VISIBLE;
+     button = findViewById<Button>(R.id.searchButton);
+    button.visibility = View.VISIBLE;
+     button = findViewById<Button>(R.id.searchButton4);
+    button.visibility = View.VISIBLE;
+}
         else{
-            dataUser+="Да";
-            isAnon = true;
+    dataUserFromLogin();
+    showDialogLogin();
         }
-        dataUser += "\n";
-        if(content.contains("name")){
-            dataUser+="Имя:";
-            var index = content.indexOf("name:");
-            index+=5;
-            index2 = content.indexOf(";",index2+1);
-            nameUser = content.substring(index,index2);
-            dataUser+=nameUser;
-        }
+        subscribeOnTextChangeSeach();
+    }
+
+    fun subscribeOnTextChangeSeach(){
+
+        var searchArea = findViewById<TextView>(R.id.searchText)
+        searchArea.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s===null){
+                    return;
+                }
+                var otvet = findViewById<TextView>(R.id.resultText);
+                otvet.text = "";
+                var result =  selectFromDataBase();
+                result.map{ zapros ->
+                    if(zapros[1].contains(s) || zapros[2].contains(s)){
+                        var fullOtvet ="id = "+zapros[0]+" || "+" Термин = "+ zapros[1]+" || Код = "+ zapros[2];
+
+                        otvet.text = otvet.text.toString() + fullOtvet + "\n";
+                    }
+                }
+            }
+        })
+    }
+
+    fun showDialogLogin(){
 
         var dialog = AlertDialog.Builder(this);
         var mes = "";
@@ -92,81 +120,82 @@ class SecondActivity : AppCompatActivity() {
         else{
             findViewById<TextView>(R.id.userNameText2).text = "Анонимный вход";
         }
+    }
+    fun dataUserFromLogin(){
 
-        var searchArea = findViewById<TextView>(R.id.searchText)
-        searchArea.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
+        val content = File(filesDir, FILE_NАМЕ).readText()
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-          if(s===null){
-              return;
-          }
-                var otvet = findViewById<TextView>(R.id.resultText);
-                otvet.text = "";
-           var result =  selectFromDataBase();
-                result.map{ zapros ->
-                    if(zapros.contains(s)){
-                        var fullOtvet ="";
-
-                        var index2 = zapros.indexOf(';');
-                        var index = zapros.indexOf("zapros:");
-                        index+=7;
-                        index2 = zapros.indexOf(";", index2+1);
-                        fullOtvet = "Термин => "+ zapros.substring(index,index2);
-                        index = zapros.indexOf("code:");
-                        index+=5;
-                        index2 = zapros.indexOf(";",index2+1);
-                        fullOtvet += "Код => "+ zapros.substring(index,index2);
-
-                        otvet.text = otvet.text.toString() + fullOtvet + "\n";
-                    }
-                }
-            }
-        })
+        var dataUser  = "Анонимно: ";
+        var index2 = 0;
+        var index = content.indexOf("anon:");
+        index+=5;
+        index2 = content.indexOf(";");
+        if(content.substring(index,index2).equals("false")){
+            dataUser+="Нет";
+            isAnon = false;
+        }
+        else{
+            dataUser+="Да";
+            isAnon = true;
+        }
+        dataUser += "\n";
+        if(content.contains("name")){
+            dataUser+="Имя:";
+            var index = content.indexOf("name:");
+            index+=5;
+            index2 = content.indexOf(";",index2+1);
+            nameUser = content.substring(index,index2);
+            dataUser+=nameUser;
+        }
+        if(content.contains("sex")) {
+            index = content.indexOf("sex:");
+            index += 4;
+            index2 = content.indexOf(";", index2 + 1);
+            sex = content.substring(index, index2);
+            dataUser += "Пол: $sex";
+        }
     }
 
+
     fun addSearchButton(view: View){
+        var otvet = findViewById<TextView>(R.id.resultText);
+        otvet.text = "";
         val intent = Intent(this, AddActivity::class.java)
         startActivity(intent)
     }
 
-    fun searchButton(view: View){
+    fun redactSearchButton(view: View){
+        var otvet = findViewById<TextView>(R.id.resultText);
+        otvet.text = "";
+        val intent = Intent(this, RedactActivity::class.java)
+        startActivity(intent)
+    }
+    fun deleteSearchButton(view: View){
+        var otvet = findViewById<TextView>(R.id.resultText);
+        otvet.text = "";
+        val intent = Intent(this, DeleteActivity::class.java)
+        startActivity(intent)
     }
 
-    fun insertInDataBase(insertZapros: String, insertCode: String){
-        // zaproc, code
-        var mydЬ = DataBase(this);
-        var sqdЬ = mydЬ.writableDatabase;
-
-        var insertQuery = "INSERT INTO " +  mydЬ.ТАВLЕ_NАМЕ +
-                " (" + mydЬ.ZAPROS + ", "+mydЬ.CODE+") VALUES ('" +
-                insertZapros+ "','"+insertCode+"')";
-
-        sqdЬ.execSQL(insertQuery);
-        sqdЬ. close () ;
-        mydЬ.close();
-    }
 
     @SuppressLint("Range")
-    fun selectFromDataBase():ArrayList<String>{
+    fun selectFromDataBase():ArrayList<Array<String>>{
         var mydЬ = DataBase(this);
         var sqdЬ = mydЬ.writableDatabase;
+        //   sqdЬ.delete("search",null,null);
 
         var query = "SELECT " + mydЬ.UID + ", " + mydЬ.ZAPROS+ ", "+
                 mydЬ.CODE+ " FROM " + mydЬ.ТАВLЕ_NАМЕ+" ;";
 
-       var otvet = sqdЬ.rawQuery(query, null);
+        var otvet = sqdЬ.rawQuery(query, null);
 
-        var returnOtvet = ArrayList<String>();
+        var returnOtvet = ArrayList<Array<String>>();
         while (otvet.moveToNext()) {
-            var id = otvet.getInt(otvet.getColumnIndex(mydЬ.UID));
-            var zapros = otvet.getString(otvet.getColumnIndex(mydЬ.ZAPROS));
-            var code = otvet.getString(otvet.getColumnIndex(mydЬ.CODE));
-            returnOtvet.add("id:"+id+";zapros:"+zapros+";code:"+code+";");
+            var inData = Array<String>(3,{""});
+            inData[0] = (otvet.getInt(otvet.getColumnIndex(mydЬ.UID))).toString();
+            inData[1] =(otvet.getString(otvet.getColumnIndex(mydЬ.ZAPROS)));
+            inData[2] = (otvet.getString(otvet.getColumnIndex(mydЬ.CODE)));
+            returnOtvet.add(inData);
         }
         sqdЬ. close () ;
         mydЬ.close();
@@ -181,6 +210,7 @@ class SecondActivity : AppCompatActivity() {
         return true
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val content = File(filesDir, FILE_NАМЕ).readText()
         var item = item.itemId;
@@ -199,12 +229,12 @@ class SecondActivity : AppCompatActivity() {
             var dataUser  = "Анонимно: ";
                 if(!this.isAnon){
                     dataUser+="Нет";
-                    dataUser+="\nИмя пользователя:"+this.nameUser;
+                    dataUser+="\nИмя пользователя:"+this.nameUser+"\n";
                 }
                 else{
                     dataUser+="Да\n";
                 }
-                dataUser += "";
+            dataUser+="Пол: $sex";
 
             dialog.setMessage(dataUser)
                 .setPositiveButton("Ок", DialogInterface.OnClickListener()

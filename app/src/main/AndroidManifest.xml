@@ -35,7 +35,13 @@
             android:name=".AddActivity">
         </activity>
         <activity
+            android:name=".RedactActivity">
+        </activity>
+        <activity
             android:name=".WebActivity">
+        </activity>
+        <activity
+            android:name=".DeleteActivity">
         </activity>
     </application>
 

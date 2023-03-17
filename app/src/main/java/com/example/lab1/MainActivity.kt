@@ -5,27 +5,21 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.RadioGroup.OnCheckedChangeListener
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.get
 import androidx.navigation.ui.AppBarConfiguration
 import com.example.lab1.databinding.ActivityMainBinding
 import java.io.File
 
 
- var FILE_NАМЕ = "autorizationData.txt";
+var FILE_NАМЕ = "autorizationData.txt";
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,12 +28,18 @@ class MainActivity : AppCompatActivity() {
     private  var CHANNEL_ID = "channel"
     private var _isAnon = false;
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
+
+        val sharedPreference =  getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+        editor.putString("admin","false")
+        editor.apply()
 
         val content = File(filesDir, FILE_NАМЕ).readText()
         if(content.contains("anon:false;")){
@@ -90,9 +90,6 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
-
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -106,13 +103,32 @@ class MainActivity : AppCompatActivity() {
             NotificationManager::class.java
         ).createNotificationChannel(channel)
     }
+    fun adminClick(view: View){
+        var name = findViewById<TextView>(R.id.nameUser);
+        if(name.text.toString() == "admin"){
+            File(filesDir, FILE_NАМЕ).writeText("");
+
+            val sharedPreference =  getSharedPreferences("PREFERENCE_NAME",Context.MODE_PRIVATE)
+            var editor = sharedPreference.edit()
+            editor.putString("admin","true")
+            editor.apply()
+
+            val intent = Intent(this@MainActivity, SecondActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
         fun clickContinue(v:View){
             var editText = findViewById<EditText>(R.id.nameUser);
+            var sex = findViewById<Spinner>(R.id.spinner);
             var data = "anon:"+this._isAnon.toString()+";";
-            if(_isAnon === false){
+            if(!_isAnon){
                 data += "name:"+editText.text+";";
             }
+            var pol =  sex.selectedItem;
+            data+= "sex:$pol;";
+            System.out.println(data)
+
             File(filesDir, FILE_NАМЕ).writeText(data);
 
             val intent = Intent(this@MainActivity, SecondActivity::class.java)

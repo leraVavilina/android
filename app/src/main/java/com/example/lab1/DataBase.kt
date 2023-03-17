@@ -17,8 +17,8 @@ class DataBase(context: Context): SQLiteOpenHelper(context, DATAВASE_NAМE,null
     public  var ТАВLЕ_NАМЕ = "search";
 
     private  var SQL_CREATE_ENТRIES = "CREATE TABLE "+ ТАВLЕ_NАМЕ +
-            " (" + UID +" INTEGER PRIМARY КЕУ AUТOINCREМENТ,"+
-            ZAPROS + " VARCНAR(255), "+CODE+" INTEGER);";
+            " ( " + UID +" integer primary key,"+
+            ZAPROS + " VARCHAR(255), "+CODE+" INTEGER);";
     private var SQL_DELETE_ENТRIES ="DROP TABLE IF EXISTS" +
             ТАВLЕ_NАМЕ;
 
@@ -27,8 +27,6 @@ class DataBase(context: Context): SQLiteOpenHelper(context, DATAВASE_NAМE,null
     }
 
     override fun onUpgrade(p0: SQLiteDatabase, p1: Int, p2: Int) {
-        Log.w("Lcx;_TAG", "Upgrading DB from version" + p1
-                + " to version " + p2) ;
         p0.execSQL(this.SQL_DELETE_ENТRIES);
         onCreate (p0) ;
     }
