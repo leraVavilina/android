@@ -1,5 +1,5 @@
 # Колисниченко Главы 100-106
-```
+```JAVA
 <android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 >
@@ -34,7 +34,7 @@ ch4\МainActivity.java. На рис. 4.16 показано его содержи
 <p align="center">Рис. 4.16. Файл MainAclivity.java</p>
 
 > Листинг 4.9 Файл MainActivity.java
-```
+```JAVA
 package com.example.ch04;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,7 +64,7 @@ puЬlic class MainActivity extends AppCompatActivity {
 Кроме метода *getText()* вам может понадобиться метод *selectAll()*, выделяющий
 весь текст в окне. Если весь текст выделять не нужно, можно использовать метод
 
-```
+```JAVA
 setSelection():
 setSelection(int start, int stop)
 ```
@@ -72,13 +72,13 @@ setSelection(int start, int stop)
 Этот метод выделяет участок текста, начиная с позиции *start* до позиции *stop*.
 Установить тип начертания шрифта можно с помощью метода *setTypeface* - например:
 
-```
+```JAVA
 txtl.setTypeface(null, Typeface.NORМAL);
 ```
 
 Вместо *NORМAL* можно указать *BOLD* и *ITALIC*. 
 Для добавления поля *Edittext* в разметку окна нужно добавить следующий код в файл разметки:
-```
+```JAVA
 <EditText
   android:id="@+id/entryl"
   android:layout_width="fill_parent"
@@ -117,7 +117,7 @@ txtl.setTypeface(null, Typeface.NORМAL);
 в листинге 4.1О. 
 
 > Листинг 4.10 Разметка проекта с кнопкой
-```
+```JAVA
 <?xml version="l.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
@@ -150,7 +150,7 @@ txtl.setTypeface(null, Typeface.NORМAL);
 приведен в листинге 4.11. 
 
 > Листинг 4.11. Пример установки обработчика события кнопки
-```
+```JAVA
 package corn.exarnple.ch04;
 
 import android.support.v7.app.AppCornpatActivity;
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 Представим, что вы в файле разметки объявили пять кнопок с именами от *buttonl*
 до *button5*. Сначала нужно найти кнопки: 
 
-```
+```JAVA
 final Button buttonl = (Button)findViewByid(R.id.buttonl);
 final Button button2 = (Button)findViewByid(R.id.button2);
 ...
@@ -199,7 +199,7 @@ final Button button5 = (Button)findViewByid(R.id.button5);
 
 Потом устанавливаем один обработчик для всех кнопок: 
 
-```
+```JAVA
 buttonl.setOnClickListener(this);
 button2.setOnClickListener(this);
 ...
@@ -208,7 +208,7 @@ button5.setOnClickListener(this);
 
 Затем анализируем, какая кнопка бьmа нажата, и выполняем соответствующее действие:
 
-```
+```JAVA
 @Override
 puЬlic void onClick(View v) {
   switch (v.getid()) {
@@ -224,7 +224,7 @@ puЬlic void onClick(View v) {
 Существует еще один, более компактный, способ установки обработчика нажатия
 кнопки. В ХМL-разметке с помощью атрибута *onClick* нужно указать имя методаобработчика:
 
-```
+```JAVA
   <Button
     android:layout_width="wrap content"
     android:layout_height="wrap_content"
@@ -234,7 +234,7 @@ puЬlic void onClick(View v) {
 
 Далее в коде просто объявить метод *sendМessage()*:
 
-```
+```JAVA
 puЬlic class MainActivity extends AppCompatActivity{
 
   @Override
