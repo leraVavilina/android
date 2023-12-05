@@ -1,4 +1,4 @@
-<img src="https://www.svgrepo.com/show/528269/folder-with-files.svg" width="30" height="30">
+<img src="https://www.svgrepo.com/show/528269/folder-with-files.svg" width="15" height="15">
 
 # Колисниченко Главы 100-106
 ```JAVA
