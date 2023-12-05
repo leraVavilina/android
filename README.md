@@ -1,4 +1,4 @@
-![Папка](https://w7.pngwing.com/pngs/763/637/png-transparent-directory-icon-folder-miscellaneous-angle-rectangle-thumbnail.png)
+![Папка](https://www.svgrepo.com/show/528269/folder-with-files.svg)
 
 # Колисниченко Главы 100-106
 ```JAVA
