@@ -1,4 +1,4 @@
-![Папка](https://www.svgrepo.com/show/528269/folder-with-files.svg)
+![Папка](https://www.svgrepo.com/show/528269/folder-with-files.svg=50x50)
 
 # Колисниченко Главы 100-106
 ```JAVA
